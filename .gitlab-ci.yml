@@ -30,8 +30,7 @@ build:
 deploy-dev:
   stage: deploy
   script:
-    - git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/rently-services-group13.git || true
-    - git push -fq heroku HEAD:master
+    - dpl --provider=heroku --app=$HEROKU_APP_PRODUCTION --api-key=$HEROKU_API_KEY
   only:
     - development
   tags:
@@ -40,8 +39,7 @@ deploy-dev:
 deploy-prod:
   stage: deploy
   script:
-    - git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/rently-services-group13.git || true
-    - git push -fq heroku HEAD:master
+    - dpl --provider=heroku --app=$HEROKU_APP_PRODUCTION --api-key=$HEROKU_API_KEY
   only:
     - master
   tags:
