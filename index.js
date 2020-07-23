@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 
 const bodyParser = require('body-parser');
 const propertyRoute = require('./api/routes/propertyRoute');
+const faqRoute = require('./api/routes/faqRoute');
 
 app.use(bodyParser.json());
 app.options('*', cors);
@@ -15,6 +16,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 app.use('/api/properties', propertyRoute);
+app.use('/api/faqs', faqRoute);
+
 
 mongoose
   .connect(
