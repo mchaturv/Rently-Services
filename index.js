@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const http = require("http");
 const cors = require("cors");
+const jwt = require("./jwt");
 const port = process.env.PORT || 3100;
 const server = http.createServer(app);
 const mongoose = require("mongoose");
@@ -14,6 +15,8 @@ const userRoute = require("./api/routes/userRoute");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
+
+app.use(jwt());
 
 app.use("/api/properties", propertyRoute);
 app.use("/api/faqs", faqRoute);

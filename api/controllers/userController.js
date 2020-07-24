@@ -1,12 +1,38 @@
 const User = require("../models/userModel");
+const jwt = require("jsonwebtoken");
+const config = require("../../config.json");
+
+exports.loginUser = (req, res, next) => {
+  User.find({
+    email: req.body.email,
+  })
+    .exec()
+    .then((data) => {
+      if (data.length == 0) {
+        res.status(400).json({
+          message: "User not found",
+        });
+      } else if (data[0].password === req.body.password) {
+        const token = jwt.sign({ sub: data[0].id }, config.secret, {
+          expiresIn: "7d",
+        });
+        res.status(200).send({
+          name: data[0].name,
+          email: data[0].email,
+          token: token,
+        });
+      } else {
+        res.status(400).json({
+          message: "Incorrect credentials",
+        });
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 exports.addUser = (req, res, next) => {
-  let user = {
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password,
-  };
-
   var new_user = new User({
     name: req.body.name,
     email: req.body.email,
@@ -16,7 +42,7 @@ exports.addUser = (req, res, next) => {
   new_user.save(function (err) {
     if (err) return console.log(err);
 
-    // user added!
+    // user added
     res.status(200);
     res.send({
       message: "user added successfully",
