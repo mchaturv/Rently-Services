@@ -12,6 +12,7 @@ function jwt() {
       "/api/users/authenticate",
       "/api/users/add-user",
       "/api/properties/allProperties",
+      "/api/properties/add-property",
       new RegExp('/api/properties/allNearByProperties.*', 'i'),
       new RegExp('/api/properties/filterallNearByProperties.*', 'i'),
     ],
