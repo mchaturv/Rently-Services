@@ -8,10 +8,10 @@ const propertyController = require('../controllers/propertyController');
 router.get('/allProperties', propertyController.getProperties);
 
 // '/property => GET'
-router.get('/allNearByProperties/:long/:latt', propertyController.getNearByProperties);
+router.get('/allNearByProperties', propertyController.getNearByProperties);
 
 // '/property => FilterProperty'
-router.get('/filterallNearByProperties/', propertyController.filterNearByProperties);
+router.get('/filterallNearByProperties', propertyController.filterNearByProperties);
 
 // '/add-product => POST'
 //router.post('/add-property', propertyController.postAddProduct);

@@ -32,7 +32,7 @@ exports.getNearByProperties = (req, res, next) => {
     { $near: 
       {$geometry: 
         { type: "Point",
-          coordinates: [req.params.long, req.params.latt]},
+          coordinates: [req.query.lat, req.query.lng]},
         $maxDistance: 15000
      }
     }
