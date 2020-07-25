@@ -10,6 +10,9 @@ function jwt() {
       // public routes that don't require authentication
       "/api/users/authenticate",
       "/api/users/add-user",
+      "/api/properties/allProperties",
+      new RegExp('/api/properties/allNearByProperties.*', 'i'),
+      new RegExp('/api/properties/filterallNearByProperties.*', 'i'),
     ],
   });
 }
