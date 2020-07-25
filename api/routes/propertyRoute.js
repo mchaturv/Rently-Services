@@ -5,7 +5,13 @@ const { json } = require('body-parser');
 const propertyController = require('../controllers/propertyController');
 
 // '/property => GET'
-router.get('/allProperties', propertyController.getProducts);
+router.get('/allProperties', propertyController.getProperties);
+
+// '/property => GET'
+router.get('/allNearByProperties', propertyController.getNearByProperties);
+
+// '/property => FilterProperty'
+router.get('/filterallNearByProperties', propertyController.filterNearByProperties);
 
 // '/add-product => POST'
 //router.post('/add-property', propertyController.postAddProduct);

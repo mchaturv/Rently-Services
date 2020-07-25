@@ -40,7 +40,7 @@ const propertySchema = new Schema({
     type: String,
     required: true
   },
-  imageUrl: {
+  imageurl: {
     type: [String],
     required: true
   },
