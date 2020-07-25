@@ -10,7 +10,8 @@ const bodyParser = require('body-parser');
 const propertyRoute = require('./api/routes/propertyRoute');
 
 app.use(bodyParser.json());
-app.options('*', cors);
+app.use(cors())
+
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
