@@ -1,9 +1,15 @@
 const Property = require('../models/property');
 
 exports.postAddProduct = (req, res, next) => {
-    /*
-     * Add properties
-     */
+     //Add properties 
+    console.log(req.body);
+    const newAd = new Property(req.body);
+    newAd.save((err,property)=>{
+      if(err){
+        return res.json({'success':false,'message':'Some Error'});
+        }
+        return res.json({'success':true,'message':'Property added successfully',property});
+    })
 };
 
 exports.getEditProduct = (req, res, next) => {
