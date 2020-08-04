@@ -4,13 +4,13 @@ const uuid = require('uuid');
 const favouriteController = require('../controllers/favouriteController');
 
 // '/favourite => GET'
-router.get('/', favouriteController.getFavourite);
+router.get('/getFavourite', favouriteController.getFavourite);
 
 // '/favourite => POST'
-router.post('/', favouriteController.saveFavourite);
+router.post('/addFavourite', favouriteController.saveFavourite);
 
 // '/favourite => DELETE'
-router.delete('/', favouriteController.deleteFavourite);
+router.delete('/removeFavourite', favouriteController.deleteFavourite);
 
 
 module.exports = router;
