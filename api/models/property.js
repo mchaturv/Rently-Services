@@ -79,12 +79,12 @@ const propertySchema = new Schema({
       type: String,
       required: true
     },
-      email:{
+    email:{
       type: String,
       required: true
     }
   }
-  
+
 });
 
 propertySchema.index({ geolocation: "2dsphere" });
