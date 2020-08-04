@@ -11,6 +11,9 @@ const bodyParser = require("body-parser");
 const propertyRoute = require("./api/routes/propertyRoute");
 const faqRoute = require("./api/routes/faqRoute");
 const userRoute = require("./api/routes/userRoute");
+const appointmentRoute = require("./api/routes/appointmentRoute");
+const favRoute = require("./api/routes/favouriteRoute");
+const notificationRoute = require("./api/routes/notificationRoute");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -21,6 +24,9 @@ app.use(jwt());
 app.use("/api/properties", propertyRoute);
 app.use("/api/faqs", faqRoute);
 app.use("/api/users", userRoute);
+app.use("/api/appointments", appointmentRoute);
+app.use("/api/favourite", favRoute);
+app.use("/api/notifications", notificationRoute);
 
 mongoose
   .connect(

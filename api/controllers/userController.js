@@ -16,7 +16,14 @@ exports.loginUser = (req, res, next) => {
         const token = jwt.sign({ sub: data[0].id }, config.secret, {
           expiresIn: "7d",
         });
+        // console.log("user id: " + jwt.decode(token).sub);
+        // var mongoose = require('mongoose');
+        // var id = mongoose.Types.ObjectId('4edd40c86762e0fb12000003');
+        // {"_id":{"$oid":"5f17152f2e6b7f5064b53c13"},
+        // {"_id":{"$oid":"5f1a476171f5390a2b151c81"},
+
         res.status(200).send({
+          userID: data[0]._id,
           name: data[0].name,
           email: data[0].email,
           token: token,
