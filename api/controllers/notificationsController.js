@@ -13,21 +13,12 @@ exports.getNotifications = (req, res, next) => {
         }, {
             seller: objectID(user)
         }]
-    }).populate({path:'property',select:'title'})
+    }).populate({path:'property',select:'title imageurl'})
         .populate('seller')
         .populate('buyer')
         .exec(function (err, notification) {
-            console.log(notification);
             res.status(200).json(notification);
         })
-
-
-    // Notification.findOne({type:"appointment"})
-    //     .populate('property')
-    //     .exec(function(err, notification) {
-    //         console.log(notification);
-    //         res.status(200).json(notification);
-    //     })
 };
 
 
@@ -46,7 +37,8 @@ exports.createNotification = async (req, res, next) => {
         seller: seller._id,
         buyer: tenant._id,
         actor: "seller",
-        status: "new"
+        status: "new",
+        type: "appointment"
     })
 
     notification.save(err => {
@@ -54,14 +46,18 @@ exports.createNotification = async (req, res, next) => {
             console.log(err);
             res.send(err);
         }
-        res.send("Finished");
+        res.send("Notification created");
     })
 
+};
 
-    // Notification.findOne({type:"appointment"})
-    //     .populate('property')
-    //     .exec(function(err, notification) {
-    //         console.log(notification);
-    //         res.status(200).json(notification);
-    //     })
+exports.updateNotification = async (req, res)=>{
+    let notificationID=req.body.id;
+    let update={status: req.body.status, actor:req.body.actor};
+
+    await Notification.findByIdAndUpdate({_id:notificationID}, update, {new:true},
+        (err, result)=>{
+        res.send(result);
+    });
+
 };

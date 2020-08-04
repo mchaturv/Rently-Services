@@ -23,6 +23,7 @@ exports.loginUser = (req, res, next) => {
         // {"_id":{"$oid":"5f1a476171f5390a2b151c81"},
 
         res.status(200).send({
+          userID: data[0]._id,
           name: data[0].name,
           email: data[0].email,
           token: token,
